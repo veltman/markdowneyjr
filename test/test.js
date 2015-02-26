@@ -2,7 +2,7 @@ var fs = require("fs"),
     assert = require("assert"),
     md2json = require("../");
 
-fs.readFile("test.md","utf8",function(err,data){
+fs.readFile("test/test.md","utf8",function(err,data){
 
   assert.deepEqual(err,null,"File error");
 

@@ -1,5 +1,5 @@
-md2json
-=======
+markdowneyjr
+============
 
 A quick markdown-to-JSON parser for somewhat easier copy editing.  Pass a markdown string like this:
 
@@ -31,17 +31,17 @@ And get back something like this:
 Install via `npm`:
 
 ```
-npm install md2json
+npm install markdowneyjr
 ```
 
 ## Usage
 
-### md2json(markdownText[,options])
+### markdowneyjr(markdownText[,options])
 
 ```js
-var md2json = require("md2json");
+var markdowneyjr = require("markdowneyjr");
 
-var dict = md2json(myMarkdown,myOptions);
+var dict = markdowneyjr(myMarkdown,myOptions);
 ```
 
 ## Options
@@ -71,7 +71,7 @@ I want to discard this **bolding.**
 ```
 
 ```js
-var dict = md2json(myMarkdown,{
+var dict = markdowneyjr(myMarkdown,{
   boolean: ["Alpacas"],
   html: ["Content"]
 });

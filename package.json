@@ -1,5 +1,5 @@
 {
-  "name": "md2json",
+  "name": "markdowneyjr",
   "version": "1.0.0",
   "description": "A hacky Markdown-to-JSON parser for easier copy editing.",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/veltman/md2json.git"
+    "url": "https://github.com/veltman/markdowneyjr.git"
   },
   "author": "Noah Veltman (@veltman)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/veltman/md2json/issues"
+    "url": "https://github.com/veltman/markdowneyjr/issues"
   },
-  "homepage": "https://github.com/veltman/md2json",
+  "homepage": "https://github.com/veltman/markdowneyjr",
   "dependencies": {
     "cheerio": "^0.18.0",
     "extend": "^2.0.0",

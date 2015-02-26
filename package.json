@@ -1,0 +1,19 @@
+{
+  "name": "md2json",
+  "version": "1.0.0",
+  "description": "A hacky Markdown-to-JSON parser for easier copy editing.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/veltman/md2json.git"
+  },
+  "author": "Noah Veltman (@veltman)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/veltman/md2json/issues"
+  },
+  "homepage": "https://github.com/veltman/md2json"
+}

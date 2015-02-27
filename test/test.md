@@ -1,10 +1,8 @@
-```
-A comment.
-```
+` Any line that starts with a single tick mark will be ignored
+` This is a comment.
 
 # Leonardo
 leads
-
 
 # Donatello
 does machines
@@ -32,6 +30,5 @@ true
 [Wikipedia](http://en.wikipedia.org/wiki/Teenage_Mutant_Ninja_Turtles)
 
 
-```
-A comment here too.
-```
+` This is another comment.
+` This is a continuation of the comment.

@@ -1,5 +1,6 @@
 var fs = require("fs"),
     assert = require("assert"),
+    cheerio = require("cheerio"),
     md2json = require("../");
 
 fs.readFile("test/test.md","utf8",function(err,data){
@@ -21,5 +22,26 @@ fs.readFile("test/test.md","utf8",function(err,data){
   assert.deepEqual(dict.Link,"<a href=\"http://en.wikipedia.org/wiki/Teenage_Mutant_Ninja_Turtles\">Wikipedia</a>","Parsing error.");
 
 
+
+});
+
+fs.readFile("test/nested.md","utf8",function(err,data){
+
+  var dict = md2json(data,{
+    boolean: ["This Is A Test","This Is Not A Test"],
+    html: ["With HTML","Paragraphs"]
+  });
+
+  assert.deepEqual(dict.Countries.Canada,"CA","Parsing error.");
+  assert.deepEqual(dict.Countries["United States"].California,"CA","Parsing error.");
+  assert.deepEqual(dict.Countries["United States"].Texas.Dallas,"DAL","Parsing error.");
+  assert.deepEqual(dict.Countries["United States"].Texas.Houston,"HOU","Parsing error.");
+  assert.deepEqual(dict.Marco,"Polo","Parsing error.");
+  assert.deepEqual(dict.Other.Nothing,"","Parsing error.");
+  assert.deepEqual(dict.Other["This Is A Test"],true,"Parsing error.");
+  assert.deepEqual(dict.Other["This Is Not A Test"],false,"Parsing error.");
+  assert.deepEqual(cheerio.load(dict.Other["With HTML"])("strong").length,1,"Parsing error.");
+  assert.deepEqual(cheerio.load(dict.Other["With HTML"])("p").length,0,"Parsing error.");
+  assert.deepEqual(cheerio.load(dict.Other.Paragraphs)("p").length,2,"Parsing error.");
 
 });

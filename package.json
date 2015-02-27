@@ -1,6 +1,6 @@
 {
   "name": "markdowneyjr",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A hacky Markdown-to-JSON parser for easier copy editing.",
   "main": "index.js",
   "scripts": {

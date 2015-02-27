@@ -3,28 +3,30 @@ markdowneyjr
 
 A quick markdown-to-JSON parser for somewhat easier copy editing.  Pass a markdown string like this:
 
-    ```
-      This is a comment. This will be ignored.
-    ```
+```
+` This is a comment. This will be ignored.
 
-    # First Name
-    John
+# First Name
+John
 
-    # Last Name
-    Doe
+# Last Name
+Doe
 
-    # Whitespace
+# Whitespace
 
 
-    Does not matter.
+Does not matter.
+```
 
 And get back something like this:
 
-    {
-      "First Name": "John",
-      "Last Name": "Doe",
-      "Whitespace": "Does not matter."
-    }
+```json
+{
+  "First Name": "John",
+  "Last Name": "Doe",
+  "Whitespace": "Does not matter."
+}
+```
 
 ## Installation
 
@@ -44,13 +46,40 @@ var markdowneyjr = require("markdowneyjr");
 var dict = markdowneyjr(myMarkdown,myOptions);
 ```
 
+## Comments
+
+Any line that starts with one tick mark (`) will be discarded as a comment.
+
+## Nesting
+
+You can also nest values:
+
+```
+# Name
+
+## First
+John
+
+## Last
+Doe
+```
+
+```
+{
+  "Name": {
+    "First": "John",
+    "Last": "Doe"
+  }
+}
+```
+
 ## Options
 
 You can pass an array of `boolean` and/or `html` fields.
 
-`boolean` fields will come back as true/false.  They will be false unless the trimmed contents are the word `true` or `yes`, case-insensitive.
+`boolean` fields will turn a string into true/false.  They will be false unless the trimmed contents are the word `true` or `yes`, case-insensitive.
 
-`html` fields will come back with their HTML contents preserved instead of the text only.
+`html` fields will come back with HTML contents preserved instead of the text only.
 
 ```
 # Content
@@ -87,3 +116,5 @@ console.log(dict);
   Bolding: 'I want to discard this bolding.'
 }
 ```
+
+These options currently work based on field name only, so if you have nested options it will apply on any key with that name and a string value, regardless of depth.  Use with caution.

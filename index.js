@@ -22,7 +22,7 @@ module.exports = function(markdown,userOptions) {
   // Coerce variable types
   dict = coerce(dict,extend({
     "boolean": [],
-    "html": []
+    "text": []
   },userOptions));
 
   return dict;
@@ -89,12 +89,12 @@ function coerce(dict,options) {
     } else if (options.boolean.indexOf(key) >= 0) {
       // Coerce to boolean
       dict[key] = toBoolean(dict[key]);
-    } else if (options.html.indexOf(key) >= 0) {
-      // Coerce to raw HTML
-      dict[key] = toHTML(dict[key]);
-    } else {
+    } else if (options.text.indexOf(key) >= 0) {
       // Strip tags
       dict[key] = toText(dict[key]);
+    } else {
+      // Coerce to raw HTML
+      dict[key] = toHTML(dict[key]);
     }
   }
 

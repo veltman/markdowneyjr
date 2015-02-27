@@ -75,11 +75,13 @@ Doe
 
 ## Options
 
-You can pass an array of `boolean` and/or `html` fields.
+By default, every value will come back as a string, and if there's HTML, it will be preserved.
+
+You can pass an array of `boolean` and/or `text` fields.
 
 `boolean` fields will turn a string into true/false.  They will be false unless the trimmed contents are the word `true` or `yes`, case-insensitive.
 
-`html` fields will come back with HTML contents preserved instead of the text only.
+`text` fields will come back with all HTML tags stripped out.
 
 ```
 # Content
@@ -102,7 +104,7 @@ I want to discard this **bolding.**
 ```js
 var dict = markdowneyjr(myMarkdown,{
   boolean: ["Alpacas"],
-  html: ["Content"]
+  text: ["Bolding"]
 });
 
 console.log(dict);

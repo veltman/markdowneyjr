@@ -9,7 +9,7 @@ fs.readFile("test/test.md","utf8",function(err,data){
 
   var dict = md2json(data,{
     boolean: ["isShredderGood","isShredderEvil","pizzaIsDelicious"],
-    html: ["Link"]
+    text: ["Text"]
   });
 
   assert.deepEqual(dict.Leonardo,"leads","Parsing error.");
@@ -20,16 +20,14 @@ fs.readFile("test/test.md","utf8",function(err,data){
   assert.deepEqual(dict.isShredderEvil,true,"Parsing error.");
   assert.deepEqual(dict.pizzaIsDelicious,true,"Parsing error.");
   assert.deepEqual(dict.Link,"<a href=\"http://en.wikipedia.org/wiki/Teenage_Mutant_Ninja_Turtles\">Wikipedia</a>","Parsing error.");
-
-
+  assert.deepEqual(dict.Text,"Wikipedia","Parsing error.");
 
 });
 
 fs.readFile("test/nested.md","utf8",function(err,data){
 
   var dict = md2json(data,{
-    boolean: ["This Is A Test","This Is Not A Test"],
-    html: ["With HTML","Paragraphs"]
+    boolean: ["This Is A Test","This Is Not A Test"]
   });
 
   assert.deepEqual(dict.Countries.Canada,"CA","Parsing error.");

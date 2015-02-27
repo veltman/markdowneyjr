@@ -8,7 +8,7 @@ var $;
 module.exports = function(markdown,userOptions) {
 
   // Markdown parsing, loading, default options
-  var html = marked(removeComments(markdown)),
+  var html = marked(removeComments(markdown),{ gfm: false}),
       dict = {};
 
   $ = cheerio.load(html);

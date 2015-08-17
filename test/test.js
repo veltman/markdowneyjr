@@ -21,6 +21,8 @@ fs.readFile("test/test.md","utf8",function(err,data){
   assert.deepEqual(dict.pizzaIsDelicious,true,"Parsing error.");
   assert.deepEqual(dict.Link,"<a href=\"http://en.wikipedia.org/wiki/Teenage_Mutant_Ninja_Turtles\">Wikipedia</a>","Parsing error.");
   assert.deepEqual(dict.Text,"Wikipedia","Parsing error.");
+  assert.deepEqual(dict.singleQuotes,"These are 'single' quotes.","Parsing error.");
+  assert.deepEqual(dict.doubleQuotes,'These are "double" quotes.',"Parsing error.");
 
 });
 

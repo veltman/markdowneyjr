@@ -1,6 +1,7 @@
 var marked = require("marked"),
     extend = require("extend"),
-    cheerio = require("cheerio");
+    cheerio = require("cheerio"),
+    entities = require("entities");
 
 // All fields string by default
 var $;
@@ -8,10 +9,10 @@ var $;
 module.exports = function(markdown,userOptions) {
 
   // Markdown parsing, loading, default options
-  var html = marked(removeComments(markdown),{ gfm: false}),
+  var html = fixQuotes(marked(removeComments(markdown),{gfm: false})),
       dict = {};
 
-  $ = cheerio.load(html);
+  $ = cheerio.load(html,{decodeEntities: false});
 
   // For each header, get the key and the subsequent tags until the next h1
   $("h1").each(function(){
@@ -102,10 +103,19 @@ function coerce(dict,options) {
 
 }
 
+// marked escapes quotes to &quot; etc.
+// https://github.com/chjj/marked/issues/269
+// Use entities to reencode quotes and ampersands because that's dumb
+function fixQuotes(text) {
+  return text.replace(/&(quot|#39|amp);/g,function unEscape(match){
+    return entities.decodeHTML(match);
+  });
+}
+
 // Strip tags, text only
 function toText(html) {
 
-  var $$ = cheerio.load("<body>" + html + "</body>");
+  var $$ = cheerio.load("<body>" + html + "</body>",{decodeEntities: false});
 
   return $$("body").text();
 
@@ -123,7 +133,7 @@ function toBoolean(html) {
 // Get the raw HTML
 function toHTML(html) {
 
-  var $$ = cheerio.load("<body>" + html + "</body>"),
+  var $$ = cheerio.load("<body>" + html + "</body>",{decodeEntities: false}),
       $children = $$("body").children();
 
   // There's a single child tag, so return its CONTENTS as raw HTML

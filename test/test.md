@@ -35,3 +35,15 @@ true
 
 ` This is another comment.
 ` This is a continuation of the comment.
+
+# rawHTML
+
+Does this still <div class="hopeful">work</div>?
+
+# singleQuotes
+
+These are 'single' quotes.
+
+# doubleQuotes
+
+These are "double" quotes.
